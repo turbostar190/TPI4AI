@@ -1,4 +1,3 @@
-//ciaone
 var secondsAngle, minutesAngle, hoursAngle;
 
 var PI = Math.PI;
