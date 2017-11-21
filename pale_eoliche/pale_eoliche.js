@@ -1,7 +1,7 @@
 var PI = Math.PI;
 
 var angPale = 0;
-var rpm = 10;
+var rpm = 1;
 var vang = (rpm * PI) / 60;
 var ang = 0;
 var framePerSec = 30;
@@ -13,27 +13,28 @@ var ctx = canvas.getContext('2d');
 ctx.translate(300, 300);
 
 function draw() {
-    if (performance.now() - ultimoTempo < 1000 / framePerSec) {
-        ultimoTempo = performance.now();
 
-        ctx.save();
-        clear();
-        ctx.restore();
+	var t1 =  performance.now();
+	var dt = (t1 - ultimoTempo) / 1000;
+	ultimoTempo = t1;
+	ang += vang * dt;
 
-        ctx.save();
-        pilottino();
-        ctx.restore();
+    ctx.save();
+    clear();
+    ctx.restore();
 
-        ctx.save();
-        pala();
-        ctx.restore();
+    ctx.save();
+    pilottino();
+    ctx.restore();
 
-        ctx.save();
-        centro();
-        ctx.restore();
+    ctx.save();
+    pala();
+    ctx.restore();
 
-        ang += vang / framePerSec;
-    }
+    ctx.save();
+    centro();
+    ctx.restore();
+
     window.requestAnimationFrame(draw);
 }
 
@@ -44,7 +45,6 @@ function centro() {
     ctx.arc(0, 0, 20, 0, 2 * PI);
     ctx.fill();
     ctx.stroke();
-    ctx.closePath();
 }
 
 function pala() {
@@ -57,7 +57,6 @@ function pala() {
         ctx.rotate(2 * PI / 3);
         ctx.fill();
         ctx.stroke();
-        ctx.closePath();
     }
 }
 
@@ -68,7 +67,6 @@ function pilottino() {
     ctx.rect(-5, 0, 10, 300);
     ctx.fill();
     ctx.stroke();
-    ctx.closePath();
 }
 
 function clear() {
