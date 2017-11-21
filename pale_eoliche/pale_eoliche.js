@@ -2,9 +2,8 @@ var PI = Math.PI;
 
 var angPale = 0;
 var rpm = 1;
-var vang = (rpm * PI) / 60;
+var vang = (rpm * PI) / 30;
 var ang = 0;
-var framePerSec = 30;
 var ultimoTempo = performance.now();
 
 var canvas = document.getElementById('canvas');
@@ -13,7 +12,7 @@ var ctx = canvas.getContext('2d');
 ctx.translate(300, 300);
 
 function draw() {
-
+	
 	var t1 =  performance.now();
 	var dt = (t1 - ultimoTempo) / 1000;
 	ultimoTempo = t1;
